@@ -2,11 +2,13 @@ import React, { useEffect } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
+import MapViewDirections from "react-native-maps-directions";
 import { SafeAreaLayout } from "../../Components";
 import { navigate } from "../../Navigation/RootNavigation";
 import { updateTrips } from "../../Redux/Actions";
 import styles from "./styles";
-import { LATITUDE_DELTA, LONGITUDE_DELTA } from "../../Helper/Constants";
+import { GOOGLE_MAPS_APIKEY, LATITUDE_DELTA, LONGITUDE_DELTA } from "../../Helper/Constants";
+import { COLORS } from "../../Styles";
 
 export function HomeScreen() {
   const dispatch = useDispatch();
@@ -38,8 +40,8 @@ export function HomeScreen() {
           style={styles.map}
           followUserLocation
           initialRegion={{
-            latitude: 30.12,
-            longitude: 31.12,
+            latitude: 30.05701869162554,
+            longitude: 31.422623642656294,
             latitudeDelta: LATITUDE_DELTA,
             longitudeDelta: LONGITUDE_DELTA,
           }}
@@ -54,6 +56,24 @@ export function HomeScreen() {
               latitudeDelta: LATITUDE_DELTA,
               longitudeDelta: LONGITUDE_DELTA,
             }}
+          />
+          <MapViewDirections
+            strokeColor={COLORS.AppColor1}
+            strokeWidth={3}
+            mode="WALKING"
+            origin={{
+              latitude: 30.05701869162554,
+              longitude: 31.422623642656294,
+              latitudeDelta: 0.00994052098169007,
+              longitudeDelta: 0.007621161639693952,
+            }}
+            destination={{
+              latitude: 30.15701869162554,
+              longitude: 31.5,
+              latitudeDelta: 0.00994052098169007,
+              longitudeDelta: 0.007621161639693952,
+            }}
+            apikey={GOOGLE_MAPS_APIKEY}
           />
         </MapView.Animated>
       </View>
