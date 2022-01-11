@@ -10,4 +10,13 @@ export default StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
   },
   marker: { width: 50, height: 50, resizeMode: "contain", marginTop: 10 },
+  rowBtLeftIconLeftTitle: {
+    alignItems: "center",
+  },
+  leftHeaderTitle: {
+    ...FONTS.MEDIUM,
+    color: COLORS.AppColor1,
+    fontSize: wp(12),
+    marginLeft: wp(2),
+  },
 });

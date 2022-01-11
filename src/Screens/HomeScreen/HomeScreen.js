@@ -1,24 +1,36 @@
 import React, { useEffect } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
-import { useSelector, useDispatch } from "react-redux";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
-import { SafeAreaLayout } from "../../Components";
+import { ICON_TYPE, IMIcon, MainHeader, SafeAreaLayout } from "../../Components";
 import { navigate } from "../../Navigation/RootNavigation";
-import { updateTrips } from "../../Redux/Actions";
 import styles from "./styles";
 import { GOOGLE_MAPS_APIKEY, LATITUDE_DELTA, LONGITUDE_DELTA } from "../../Helper/Constants";
-import { COLORS } from "../../Styles";
+import { COLORS, wp } from "../../Styles";
 
 export function HomeScreen() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(updateTrips("lllll"));
-  }, []);
-  const x = useSelector((state) => state.tripsState.trips);
+  const rightIcon = () => (
+    <View style={styles.rowBtLeftIconLeftTitle}>
+      <IMIcon
+        origin={ICON_TYPE.FONT_AWESOME5}
+        name="history"
+        size={wp(12)}
+        color={COLORS.AppColor1}
+      />
+      <Text style={styles.leftHeaderTitle}>History</Text>
+    </View>
+  );
+  const renderHeader = () => (
+    <MainHeader
+      title="Home"
+      rightIcon={rightIcon}
+      onRightIconPress={() => {
+        navigate("HistoryScreen");
+      }}
+    />
+  );
   return (
-    <SafeAreaLayout>
-      <Text>{x}</Text>
+    <SafeAreaLayout header={renderHeader()}>
       <TouchableOpacity
         style={{ backgroundColor: "red" }}
         onPress={() => {
