@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import React from "react";
+import { Text, View } from "react-native";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
 import { ICON_TYPE, IMIcon, MainHeader, SafeAreaLayout } from "../../Components";
@@ -31,20 +31,6 @@ export function HomeScreen() {
   );
   return (
     <SafeAreaLayout header={renderHeader()}>
-      <TouchableOpacity
-        style={{ backgroundColor: "red" }}
-        onPress={() => {
-          navigate("HistoryScreen");
-        }}>
-        <Text>To History Screen</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={{ backgroundColor: "blue" }}
-        onPress={() => {
-          navigate("DetailsScreen");
-        }}>
-        <Text>To Details Screen</Text>
-      </TouchableOpacity>
       <View style={styles.mapContainer}>
         <MapView.Animated
           showsBuildings
@@ -70,7 +56,7 @@ export function HomeScreen() {
             }}
           />
           <MapViewDirections
-            strokeColor={COLORS.AppColor1}
+            strokeColor={COLORS.AppColor3}
             strokeWidth={3}
             mode="WALKING"
             origin={{

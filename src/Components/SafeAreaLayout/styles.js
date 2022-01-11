@@ -5,7 +5,7 @@ export default StyleSheet.create({
   KeyboardAvoidingView: { flex: 1 },
   mainLayout: {
     flex: 1,
-    backgroundColor: COLORS.AppColor2,
+    backgroundColor: COLORS.AppColor1,
   },
   mainSafeArea: {
     flex: 1,

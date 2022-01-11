@@ -14,7 +14,7 @@ function App() {
     <SafeAreaProvider>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <StatusBar backgroundColor={COLORS.AppColor3} barStyle="light-content" />
+          <StatusBar backgroundColor="white" barStyle="dark-content" />
           <AppContainer />
         </PersistGate>
       </Provider>
