@@ -17,7 +17,7 @@ import {
   useColorScheme,
   View,
 } from "react-native";
-
+import AntDesign from "react-native-vector-icons/AntDesign";
 import {
   Colors,
   DebugInstructions,
@@ -31,6 +31,8 @@ function Section({ children, title }): Node {
   const isDarkMode = useColorScheme() === "dark";
   return (
     <View style={styles.sectionContainer}>
+      <Text>Hoeelo</Text>
+      <AntDesign name="stepforward" color="black" size={50} />
       <Text
         style={[
           styles.sectionTitle,
