@@ -1,11 +1,12 @@
 import React from "react";
 import { Text, View } from "react-native";
+import { SafeAreaLayout } from "../../Components";
 import styles from "./styles";
 
 export function HistoryScreen() {
   return (
-    <View>
+    <SafeAreaLayout>
       <Text>History Screen</Text>
-    </View>
+    </SafeAreaLayout>
   );
 }
