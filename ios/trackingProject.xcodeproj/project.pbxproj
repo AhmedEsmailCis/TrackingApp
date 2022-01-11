@@ -12,6 +12,13 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		83B9D08BDC4E4BFD8E272B7F /* Tajawal-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C4B0D723471941F79302A0BC /* Tajawal-Black.ttf */; };
+		18C10984222F4191AB1C29CB /* Tajawal-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17C5D140EC53416B9445A885 /* Tajawal-Bold.ttf */; };
+		2C8C961A6088443C8A21447B /* Tajawal-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D572CCDF437644819D351060 /* Tajawal-ExtraBold.ttf */; };
+		FA6BC0AEBE244E209662A4D0 /* Tajawal-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06EE616E59D245A6AB7C6E40 /* Tajawal-ExtraLight.ttf */; };
+		DE7F52B6B7DB4191A558437A /* Tajawal-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DF9B529620AC47F58ABC935E /* Tajawal-Light.ttf */; };
+		0363DFD72EF44A249C1EA56D /* Tajawal-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C0E37450EAF74D6AA081D2C7 /* Tajawal-Medium.ttf */; };
+		DCE61B350EBD446F92C7F73F /* Tajawal-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2EED9A1A799140FBAB6A59DB /* Tajawal-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +43,13 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = trackingProject/main.m; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = trackingProject/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		C4B0D723471941F79302A0BC /* Tajawal-Black.ttf */ = {isa = PBXFileReference; name = "Tajawal-Black.ttf"; path = "../src/Assets/Fonts/Tajawal/Tajawal-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		17C5D140EC53416B9445A885 /* Tajawal-Bold.ttf */ = {isa = PBXFileReference; name = "Tajawal-Bold.ttf"; path = "../src/Assets/Fonts/Tajawal/Tajawal-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D572CCDF437644819D351060 /* Tajawal-ExtraBold.ttf */ = {isa = PBXFileReference; name = "Tajawal-ExtraBold.ttf"; path = "../src/Assets/Fonts/Tajawal/Tajawal-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		06EE616E59D245A6AB7C6E40 /* Tajawal-ExtraLight.ttf */ = {isa = PBXFileReference; name = "Tajawal-ExtraLight.ttf"; path = "../src/Assets/Fonts/Tajawal/Tajawal-ExtraLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DF9B529620AC47F58ABC935E /* Tajawal-Light.ttf */ = {isa = PBXFileReference; name = "Tajawal-Light.ttf"; path = "../src/Assets/Fonts/Tajawal/Tajawal-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C0E37450EAF74D6AA081D2C7 /* Tajawal-Medium.ttf */ = {isa = PBXFileReference; name = "Tajawal-Medium.ttf"; path = "../src/Assets/Fonts/Tajawal/Tajawal-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2EED9A1A799140FBAB6A59DB /* Tajawal-Regular.ttf */ = {isa = PBXFileReference; name = "Tajawal-Regular.ttf"; path = "../src/Assets/Fonts/Tajawal/Tajawal-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +123,7 @@
 				00E356EF1AD99517003FC87E /* trackingProjectTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
+				C4294CE873F0413BAAC3854B /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -123,6 +138,21 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
+		};
+		C4294CE873F0413BAAC3854B /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				C4B0D723471941F79302A0BC /* Tajawal-Black.ttf */,
+				17C5D140EC53416B9445A885 /* Tajawal-Bold.ttf */,
+				D572CCDF437644819D351060 /* Tajawal-ExtraBold.ttf */,
+				06EE616E59D245A6AB7C6E40 /* Tajawal-ExtraLight.ttf */,
+				DF9B529620AC47F58ABC935E /* Tajawal-Light.ttf */,
+				C0E37450EAF74D6AA081D2C7 /* Tajawal-Medium.ttf */,
+				2EED9A1A799140FBAB6A59DB /* Tajawal-Regular.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -214,6 +244,13 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				83B9D08BDC4E4BFD8E272B7F /* Tajawal-Black.ttf in Resources */,
+				18C10984222F4191AB1C29CB /* Tajawal-Bold.ttf in Resources */,
+				2C8C961A6088443C8A21447B /* Tajawal-ExtraBold.ttf in Resources */,
+				FA6BC0AEBE244E209662A4D0 /* Tajawal-ExtraLight.ttf in Resources */,
+				DE7F52B6B7DB4191A558437A /* Tajawal-Light.ttf in Resources */,
+				0363DFD72EF44A249C1EA56D /* Tajawal-Medium.ttf in Resources */,
+				DCE61B350EBD446F92C7F73F /* Tajawal-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

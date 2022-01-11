@@ -25,6 +25,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from "react-native/Libraries/NewAppScreen";
+import { FONTS } from "./src/Styles";
 
 function Section({ children, title }): Node {
   const isDarkMode = useColorScheme() === "dark";
@@ -94,6 +95,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 24,
     fontWeight: "600",
+    ...FONTS.SEMI_BOLD,
   },
   sectionDescription: {
     marginTop: 8,
