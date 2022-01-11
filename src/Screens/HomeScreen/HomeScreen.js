@@ -7,9 +7,9 @@ import styles from "./styles";
 
 export function HomeScreen() {
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(updateTrips("hhhhhh"));
-  // }, []);
+  useEffect(() => {
+    dispatch(updateTrips("lllll"));
+  }, []);
   const x = useSelector((state) => state.tripsState.trips);
   return (
     <View>
