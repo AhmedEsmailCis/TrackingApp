@@ -9,7 +9,7 @@ export default StyleSheet.create({
   map: {
     ...StyleSheet.absoluteFillObject,
   },
-  marker: { width: 50, height: 50, resizeMode: "contain", marginTop: 10 },
+  marker: { width: 50, height: 50, resizeMode: "contain" },
   rowBtLeftIconLeftTitle: {
     alignItems: "center",
   },

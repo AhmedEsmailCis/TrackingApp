@@ -1,12 +1,13 @@
-import React from "react";
-import { Text, View } from "react-native";
+import React, { useEffect, useState, useRef } from "react";
+import { Text, View, PermissionsAndroid } from "react-native";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
-import MapViewDirections from "react-native-maps-directions";
+import FastImage from "react-native-fast-image";
 import { ICON_TYPE, IMIcon, MainHeader, SafeAreaLayout } from "../../Components";
 import { navigate } from "../../Navigation/RootNavigation";
 import styles from "./styles";
-import { GOOGLE_MAPS_APIKEY, LATITUDE_DELTA, LONGITUDE_DELTA } from "../../Helper/Constants";
-import { COLORS, wp } from "../../Styles";
+import { LATITUDE_DELTA, LONGITUDE_DELTA } from "../../Helper/Constants";
+import { COLORS, IMAGES, wp } from "../../Styles";
+import { checkAndRequestLocationPermission } from "../../Helper/permissions";
 
 export function HomeScreen() {
   const rightIcon = () => (
@@ -29,10 +30,72 @@ export function HomeScreen() {
       }}
     />
   );
+
+  // const requestLocationPermission = async () => {
+  //   try {
+  //     const granted = await PermissionsAndroid.request(
+  //       PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+  //       {
+  //         title: "4GO",
+  //         message:
+  //           "4GO uses location service for delivery " +
+  //           "and only while you are using the application",
+  //       },
+  //     );
+  //     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+  //       // console.log("You can use the location");
+  //       // calculationRegion();
+  //     } else {
+  //       console.log("location permission denied");
+  //     }
+  //   } catch (err) {
+  //     // console.warn(err);
+  //     requestLocationPermission();
+  //   }
+  // };
+  //--------------------------------------------------------------------
+  const mapRef = useRef(null);
+  const markerRef = useRef(null);
+  const [latState, setLatState] = useState();
+  const [longState, setLongState] = useState();
+  useEffect(() => {
+    checkAndRequestLocationPermission();
+  }, []);
+  useEffect(() => {
+    if (latState && longState) {
+      mapRef?.current?.animateToRegion(
+        {
+          latitude: latState,
+          longitude: longState,
+          latitudeDelta: LATITUDE_DELTA,
+          longitudeDelta: LONGITUDE_DELTA,
+        },
+        3000,
+      );
+      setTimeout(
+        () =>
+          markerRef?.current?.animateMarkerToCoordinate(
+            { latitude: latState, longitude: longState },
+            5000,
+          ),
+        1000,
+      );
+    }
+  }, [latState, longState]);
+  const onUserLocationChange = async (e) => {
+    console.log(JSON.stringify(e.nativeEvent.coordinate, null, 2));
+    const { latitude, longitude, heading, speed } = e?.nativeEvent?.coordinate;
+    if (latitude && longitude && heading) {
+      setLatState(latitude);
+      setLongState(longitude);
+    }
+  };
+
   return (
     <SafeAreaLayout header={renderHeader()}>
       <View style={styles.mapContainer}>
         <MapView.Animated
+          ref={mapRef}
           showsBuildings
           provider={PROVIDER_GOOGLE} // remove if not using Google Maps
           style={styles.map}
@@ -46,33 +109,19 @@ export function HomeScreen() {
           zoomEnabled
           zoomTapEnabled
           showsUserLocation
-          showsMyLocationButton>
+          showsMyLocationButton
+          //------------
+          onUserLocationChange={onUserLocationChange}>
           <Marker.Animated
+            ref={markerRef}
             coordinate={{
               latitude: 30.05701869162554,
               longitude: 31.422623642656294,
               latitudeDelta: LATITUDE_DELTA,
               longitudeDelta: LONGITUDE_DELTA,
-            }}
-          />
-          <MapViewDirections
-            strokeColor={COLORS.AppColor3}
-            strokeWidth={3}
-            mode="WALKING"
-            origin={{
-              latitude: 30.05701869162554,
-              longitude: 31.422623642656294,
-              latitudeDelta: 0.00994052098169007,
-              longitudeDelta: 0.007621161639693952,
-            }}
-            destination={{
-              latitude: 30.15701869162554,
-              longitude: 31.5,
-              latitudeDelta: 0.00994052098169007,
-              longitudeDelta: 0.007621161639693952,
-            }}
-            apikey={GOOGLE_MAPS_APIKEY}
-          />
+            }}>
+            <FastImage source={IMAGES.marker} style={styles.marker} resizeMode="contain" />
+          </Marker.Animated>
         </MapView.Animated>
       </View>
     </SafeAreaLayout>
