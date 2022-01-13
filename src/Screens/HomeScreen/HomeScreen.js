@@ -12,9 +12,8 @@ import {
 } from "../../Components";
 import { navigate } from "../../Navigation/RootNavigation";
 import styles from "./styles";
-import { LATITUDE_DELTA, LONGITUDE_DELTA } from "../../Helper/Constants";
 import { COLORS, IMAGES, wp } from "../../Styles";
-import { checkAndRequestLocationPermission } from "../../Helper/permissions";
+import { checkAndRequestLocationPermission, LATITUDE_DELTA, LONGITUDE_DELTA } from "../../Helper";
 
 export function HomeScreen() {
   const rightIcon = () => (

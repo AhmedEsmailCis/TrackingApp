@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Alert, Modal, Text, View } from "react-native";
 import { RoundButton } from "..";
-import { getDistanceBtTwoCoordinate, secondsConverter } from "../../Helper/HelperFunction";
+import { TimeFormat, getDistanceBtTwoCoordinate } from "../../Helper";
+
 import { navigate } from "../../Navigation/RootNavigation";
 import styles from "./styles";
 
@@ -90,7 +91,7 @@ export function TripDetailsModal({ modalVisible, setModalVisible, liveLat, liveL
         // setModalVisible(!modalVisible);
       }}>
       <View style={styles.modalView}>
-        <Text style={styles.txt}>{secondsConverter(counterTime)}</Text>
+        <Text style={styles.txt}>{TimeFormat(counterTime)}</Text>
         <View style={styles.rowBtThreeDetails}>
           <View style={styles.rowBtLabelResult}>
             <Text numberOfLines={1} style={styles.label}>
