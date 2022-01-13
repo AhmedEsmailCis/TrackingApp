@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Text, View, PermissionsAndroid } from "react-native";
+import { Text, View } from "react-native";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import FastImage from "react-native-fast-image";
-import { ICON_TYPE, IMIcon, MainHeader, SafeAreaLayout } from "../../Components";
+import { ICON_TYPE, IMIcon, MainHeader, SafeAreaLayout, StartRunningCard } from "../../Components";
 import { navigate } from "../../Navigation/RootNavigation";
 import styles from "./styles";
 import { LATITUDE_DELTA, LONGITUDE_DELTA } from "../../Helper/Constants";
@@ -124,6 +124,7 @@ export function HomeScreen() {
           </Marker.Animated>
         </MapView.Animated>
       </View>
+      <StartRunningCard />
     </SafeAreaLayout>
   );
 }
