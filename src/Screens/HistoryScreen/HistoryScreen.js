@@ -1,9 +1,11 @@
 import React from "react";
 import { FlatList } from "react-native";
+import { useSelector } from "react-redux";
 import { SafeAreaLayout, MainHeader, IMIcon, ICON_TYPE, TripCard } from "../../Components";
 import { COLORS, wp } from "../../Styles";
 import styles from "./styles";
 import { navigate, pop } from "../../Navigation/RootNavigation";
+import { GetFullDate, TimeFormat } from "../../Helper";
 
 export function HistoryScreen() {
   const leftIcon = () => (
@@ -23,79 +25,15 @@ export function HistoryScreen() {
       }}
     />
   );
-  const dummyData = [
-    {
-      date: "15 May 2021",
-      time: "00:00:30",
-      steps: 150,
-      distance: 266,
-      status: "superFast", // walking superFast running
-    },
-    {
-      date: "20 July 2021",
-      time: "00:30:30",
-      steps: 3200,
-      distance: 208,
-      status: "walking", // walking superFast running
-    },
-    {
-      date: "01 Aug 2021",
-      time: "00:15:25",
-      steps: 3200,
-      distance: 170,
-      status: "running", // walking superFast running
-    },
-    {
-      date: "15 May 2021",
-      time: "00:00:30",
-      steps: 150,
-      distance: 400,
-      status: "superFast", // walking superFast running
-    },
-    {
-      date: "20 July 2021",
-      time: "00:30:30",
-      steps: 3200,
-      distance: 300,
-      status: "walking", // walking superFast running
-    },
-    {
-      date: "01 Aug 2021",
-      time: "00:15:25",
-      steps: 3200,
-      distance: 300,
-      status: "running", // walking superFast running
-    },
-    {
-      date: "15 May 2021",
-      time: "00:00:30",
-      steps: 150,
-      distance: 300,
-      status: "superFast", // walking superFast running
-    },
-    {
-      date: "20 July 2021",
-      time: "00:30:30",
-      steps: 3200,
-      distance: 300,
-      status: "walking", // walking superFast running
-    },
-    {
-      date: "01 Aug 2021",
-      time: "00:15:25",
-      steps: 3200,
-      distance: 300,
-      status: "running", // walking superFast running
-    },
-  ];
+  const trips = useSelector((state) => state.tripsState.trips);
   const renderItem = ({ item, index }) => {
     return (
       <TripCard
         key={index?.toString()}
-        date={item?.date}
-        time={item?.time}
+        date={GetFullDate(Date.parse(item?.date))}
+        time={TimeFormat(item?.time)}
         steps={item?.steps}
-        distance={item?.distance}
+        distance={item?.distance.toFixed(2)}
         status={item?.status}
         onPress={() => {
           navigate("DetailsScreen");
@@ -106,7 +44,7 @@ export function HistoryScreen() {
   return (
     <SafeAreaLayout header={renderHeader()}>
       <FlatList
-        data={dummyData}
+        data={trips}
         keyExtractor={(item, index) => index.toString()}
         contentContainerStyle={styles.mainContainer}
         showsVerticalScrollIndicator={false}

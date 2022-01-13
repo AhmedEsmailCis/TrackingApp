@@ -37,33 +37,10 @@ export function HomeScreen() {
     />
   );
 
-  // const requestLocationPermission = async () => {
-  //   try {
-  //     const granted = await PermissionsAndroid.request(
-  //       PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-  //       {
-  //         title: "4GO",
-  //         message:
-  //           "4GO uses location service for delivery " +
-  //           "and only while you are using the application",
-  //       },
-  //     );
-  //     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-  //       // console.log("You can use the location");
-  //       // calculationRegion();
-  //     } else {
-  //       console.log("location permission denied");
-  //     }
-  //   } catch (err) {
-  //     // console.warn(err);
-  //     requestLocationPermission();
-  //   }
-  // };
-  //--------------------------------------------------------------------
   const mapRef = useRef(null);
   const markerRef = useRef(null);
-  const [latState, setLatState] = useState();
-  const [longState, setLongState] = useState();
+  const [latState, setLatState] = useState(null);
+  const [longState, setLongState] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
@@ -134,7 +111,7 @@ export function HomeScreen() {
           </Marker.Animated>
         </MapView.Animated>
       </View>
-      <StartRunningCard onStartPress={onStartTripPress} />
+      {latState && longState && <StartRunningCard onStartPress={onStartTripPress} />}
       <TripDetailsModal
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}

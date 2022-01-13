@@ -14,7 +14,7 @@ export default StyleSheet.create({
     elevation: 10,
 
     width: wp(322),
-    height: hp(200),
+    height: hp(220),
     backgroundColor: "white",
     alignSelf: "center",
     marginBottom: hp(18),
@@ -26,14 +26,13 @@ export default StyleSheet.create({
   },
   txt: {
     ...FONTS.BOLD,
-    fontSize: wp(18),
+    fontSize: wp(35),
     color: COLORS.AppColor1,
-    marginBottom: hp(8),
   },
   rowBtThreeDetails: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: hp(5),
+
     justifyContent: "space-around",
   },
   rowBtLabelResult: {

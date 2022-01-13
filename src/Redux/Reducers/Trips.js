@@ -1,15 +1,15 @@
-import { TESTS } from "../Type";
+import { INSERT_NEW_TRIP } from "../Type";
 
 const INITIAL_STATE = {
-  trips: "ahmed",
+  trips: [],
 };
 
 export default (state = INITIAL_STATE, action = {}) => {
   switch (action.type) {
-    case TESTS:
+    case INSERT_NEW_TRIP:
       return {
         ...state,
-        trips: action.payload,
+        trips: [action.payload, ...state.trips],
       };
 
     default:

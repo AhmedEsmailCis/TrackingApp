@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Alert, Modal, Text, View } from "react-native";
+import { useDispatch } from "react-redux";
 import { RoundButton } from "..";
 import { TimeFormat, getDistanceBtTwoCoordinate } from "../../Helper";
 
 import { navigate } from "../../Navigation/RootNavigation";
+import { InsertNewTrips } from "../../Redux/Actions";
 import styles from "./styles";
 
 export function TripDetailsModal({ modalVisible, setModalVisible, liveLat, liveLong }) {
@@ -12,6 +14,7 @@ export function TripDetailsModal({ modalVisible, setModalVisible, liveLat, liveL
   const [saveDate, setSaveDate] = useState(null);
   const [pathData, setPathData] = useState([]);
   const [cumulativeDistance, setCumulativeDistance] = useState(0);
+  const dispatch = useDispatch();
   useEffect(() => {
     if (modalVisible) {
       onStartTrip();
@@ -76,6 +79,16 @@ export function TripDetailsModal({ modalVisible, setModalVisible, liveLat, liveL
     setPause(false);
   };
   const onStopPress = () => {
+    dispatch(
+      InsertNewTrips({
+        date: saveDate,
+        time: counterTime,
+        steps: Math.floor(1.31 * cumulativeDistance),
+        distance: cumulativeDistance,
+        status: "superFast", // walking superFast running
+        path: pathData,
+      }),
+    );
     setModalVisible(false);
     setPause(false);
     setPathData([]);
@@ -101,12 +114,13 @@ export function TripDetailsModal({ modalVisible, setModalVisible, liveLat, liveL
               {cumulativeDistance?.toFixed(2)} m
             </Text>
           </View>
+
           <View style={styles.rowBtLabelResult}>
             <Text numberOfLines={1} style={styles.label}>
               Steps :
             </Text>
             <Text numberOfLines={1} style={styles.result}>
-              {0}
+              {Math.floor(1.31 * cumulativeDistance)}
             </Text>
           </View>
         </View>
