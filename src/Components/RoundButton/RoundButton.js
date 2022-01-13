@@ -13,8 +13,8 @@ export function RoundButton({ type, onPress, disabled }) {
     if (type === STOP) return "stop";
   };
   return (
-    <TouchableOpacity style={styles.Bttn} disabled={disabled} onPress={onPress}>
-      <IMIcon origin={ICON_TYPE.FONT_AWESOME} name={determineIconName()} color="white" size={20} />
+    <TouchableOpacity activeOpacity={0.7} style={styles.Bttn} disabled={disabled} onPress={onPress}>
+      <IMIcon origin={ICON_TYPE.FONT_AWESOME} name={determineIconName()} color="white" size={15} />
     </TouchableOpacity>
   );
 }
