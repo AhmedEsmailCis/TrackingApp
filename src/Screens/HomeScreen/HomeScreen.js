@@ -99,7 +99,9 @@ export function HomeScreen() {
       setLongState(longitude);
     }
   };
-
+  const onStartTripPress = () => {
+    setModalVisible(true);
+  };
   return (
     <SafeAreaLayout header={renderHeader()}>
       <View style={styles.mapContainer}>
@@ -133,11 +135,7 @@ export function HomeScreen() {
           </Marker.Animated>
         </MapView.Animated>
       </View>
-      <StartRunningCard
-        onStartPress={() => {
-          setModalVisible(true);
-        }}
-      />
+      <StartRunningCard onStartPress={onStartTripPress} />
       <TripDetailsModal
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}

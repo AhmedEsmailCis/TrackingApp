@@ -1,11 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Alert, Modal, Text, View } from "react-native";
 import { RoundButton } from "..";
+import { secondsConverter } from "../../Helper/HelperFunction";
 import { navigate } from "../../Navigation/RootNavigation";
 import styles from "./styles";
 
 export function TripDetailsModal({ modalVisible, setModalVisible, liveLat, liveLong }) {
   const [pause, setPause] = useState(false);
+  const [counterTime, setCounterTime] = useState(5);
+  const [saveDate, setSaveDate] = useState(null);
+  useEffect(() => {
+    if (modalVisible) {
+      onStartTrip();
+    }
+  }, [modalVisible]);
+  useEffect(() => {
+    if (modalVisible && !pause) {
+      setTimeout(() => {
+        setCounterTime((c) => c + 1);
+      }, 1000);
+    }
+  }, [counterTime, pause]);
+  const onStartTrip = () => {
+    setCounterTime(0);
+    setSaveDate(new Date());
+  };
   const onPausePress = () => {
     setPause(true);
   };
@@ -27,7 +46,7 @@ export function TripDetailsModal({ modalVisible, setModalVisible, liveLat, liveL
         // setModalVisible(!modalVisible);
       }}>
       <View style={styles.modalView}>
-        <Text style={styles.txt}>00:00:00</Text>
+        <Text style={styles.txt}>{secondsConverter(counterTime)}</Text>
         <View style={styles.rowBtThreeDetails}>
           <View style={styles.rowBtLabelResult}>
             <Text style={styles.label}>Steps : </Text>
