@@ -41,6 +41,8 @@
     "react-native/no-single-element-style-arrays": 2,
     "react/jsx-props-no-spreading": ["error", { "custom": "ignore" }],
     "react/prop-types": 0,
-    "no-underscore-dangle": "off"
+    "no-underscore-dangle": "off",
+    "react/jsx-no-useless-fragment": 0,
+    "no-unsafe-optional-chaining": 0
   }
 }

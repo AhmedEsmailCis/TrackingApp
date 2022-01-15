@@ -84,7 +84,7 @@ export function TripDetailsModal({ modalVisible, setModalVisible, liveLat, liveL
       InsertNewTrips({
         date: saveDate,
         time: counterTime,
-        steps: Math.floor(1.31 * cumulativeDistance),
+        steps: Math.floor(1.31 * cumulativeDistance).toFixed(0),
         distance: cumulativeDistance,
         status: "superFast", // walking superFast running
         path: pathData,
@@ -112,6 +112,7 @@ export function TripDetailsModal({ modalVisible, setModalVisible, liveLat, liveL
               Distance :
             </Text>
             <Text numberOfLines={1} style={styles.result}>
+              {" "}
               {cumulativeDistance?.toFixed(2)} m
             </Text>
           </View>
@@ -121,7 +122,8 @@ export function TripDetailsModal({ modalVisible, setModalVisible, liveLat, liveL
               Steps :
             </Text>
             <Text numberOfLines={1} style={styles.result}>
-              {Math.floor(1.31 * cumulativeDistance)}
+              {" "}
+              {Math.floor(1.31 * cumulativeDistance).toFixed(0)}
             </Text>
           </View>
         </View>

@@ -55,15 +55,15 @@ export function HomeScreen() {
           latitudeDelta: LATITUDE_DELTA,
           longitudeDelta: LONGITUDE_DELTA,
         },
-        3000,
+        1000,
       );
       setTimeout(
         () =>
           markerRef?.current?.animateMarkerToCoordinate(
             { latitude: latState, longitude: longState },
-            5000,
+            500,
           ),
-        1000,
+        500,
       );
     }
   }, [latState, longState]);
@@ -82,6 +82,7 @@ export function HomeScreen() {
     <SafeAreaLayout header={renderHeader()}>
       <View style={styles.mapContainer}>
         <MapView.Animated
+          // onRegionChange={(r) => console.log(JSON.stringify(r, null, 2))}
           ref={mapRef}
           showsBuildings
           provider={PROVIDER_GOOGLE} // remove if not using Google Maps

@@ -4,14 +4,7 @@ import FastImage from "react-native-fast-image";
 import { COLORS, IMAGES } from "../../Styles";
 import styles from "./styles";
 
-export function SafeAreaLayout({
-  hasImage,
-  header,
-  children,
-  mainLayoutStyle,
-  footer,
-  footerStyle,
-}) {
+export function SafeAreaLayout({ hasImage, header, children, style, footer, footerStyle }) {
   const getKeyboardAvoidingViewBehavior = () => {
     if (Platform.OS === "ios") {
       return "padding";
@@ -38,12 +31,8 @@ export function SafeAreaLayout({
         <View
           style={
             hasImage
-              ? [
-                  styles.containStyle,
-                  mainLayoutStyle,
-                  { backgroundColor: COLORS.AppColorTransparent },
-                ]
-              : [styles.containStyle, mainLayoutStyle]
+              ? [styles.containStyle, style, { backgroundColor: COLORS.AppColorTransparent }]
+              : [styles.containStyle, style]
           }>
           {children}
         </View>
