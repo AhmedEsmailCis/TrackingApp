@@ -9,8 +9,8 @@ import styles from "./styles";
 
 export function TripDetailsModal({ modalVisible, setModalVisible, liveLat, liveLong }) {
   const [pause, setPause] = useState(false);
-  const [counterTime, setCounterTime] = useState(1);
-  const [saveDate, setSaveDate] = useState(null);
+  const [startDate, setStartDate] = useState(new Date());
+  const [currentDate, setCurrentDate] = useState(new Date());
   const [pathData, setPathData] = useState([]);
   const [cumulativeDistance, setCumulativeDistance] = useState(0);
   const dispatch = useDispatch();
@@ -22,10 +22,10 @@ export function TripDetailsModal({ modalVisible, setModalVisible, liveLat, liveL
   useEffect(() => {
     if (modalVisible && !pause) {
       setTimeout(() => {
-        setCounterTime((c) => c + 1);
+        setCurrentDate(new Date());
       }, 1000);
     }
-  }, [counterTime, pause]);
+  }, [currentDate, pause]);
   useEffect(() => {
     if (pause) {
       pathData.push({
@@ -39,7 +39,7 @@ export function TripDetailsModal({ modalVisible, setModalVisible, liveLat, liveL
     if (modalVisible && !pause) {
       pushNewPath();
     }
-  }, [liveLat, liveLong]);
+  }, [liveLat]);
   const pushNewPath = () => {
     const { length } = pathData;
     const previousPathItem = pathData[length - 1];
@@ -62,7 +62,6 @@ export function TripDetailsModal({ modalVisible, setModalVisible, liveLat, liveL
     });
   };
   const onStartTrip = () => {
-    setCounterTime(0);
     setCumulativeDistance(0);
     setPathData([
       {
@@ -71,7 +70,8 @@ export function TripDetailsModal({ modalVisible, setModalVisible, liveLat, liveL
         pause: false,
       },
     ]);
-    setSaveDate(new Date());
+    setStartDate(new Date());
+    setCurrentDate(new Date());
   };
   const onPausePress = () => {
     setPause(true);
@@ -82,8 +82,8 @@ export function TripDetailsModal({ modalVisible, setModalVisible, liveLat, liveL
   const onStopPress = () => {
     dispatch(
       InsertNewTrips({
-        date: saveDate,
-        time: counterTime,
+        date: startDate,
+        time: Math.abs((currentDate.getTime() - startDate.getTime()) / 1000),
         steps: Math.floor(1.31 * cumulativeDistance).toFixed(0),
         distance: cumulativeDistance,
         status: "superFast", // walking superFast running
@@ -105,7 +105,9 @@ export function TripDetailsModal({ modalVisible, setModalVisible, liveLat, liveL
         // setModalVisible(!modalVisible);
       }}>
       <View style={styles.modalView}>
-        <Text style={styles.txt}>{TimeFormat(counterTime)}</Text>
+        <Text style={styles.txt}>
+          {TimeFormat(Math.abs((currentDate.getTime() - startDate.getTime()) / 1000))}
+        </Text>
         <View style={styles.rowBtThreeDetails}>
           <View style={styles.rowBtLabelResult}>
             <Text numberOfLines={1} style={styles.label}>
