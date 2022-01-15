@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FlatList } from "react-native";
 import { useSelector } from "react-redux";
+import reactotron from "reactotron-react-native";
 import { SafeAreaLayout, MainHeader, IMIcon, ICON_TYPE, TripCard } from "../../Components";
 import { COLORS, wp } from "../../Styles";
 import styles from "./styles";
@@ -26,6 +27,9 @@ export function HistoryScreen() {
     />
   );
   const trips = useSelector((state) => state.tripsState.trips);
+  useEffect(() => {
+    reactotron.log("History", trips);
+  }, []);
   const renderItem = ({ item, index }) => {
     return (
       <TripCard
@@ -35,8 +39,9 @@ export function HistoryScreen() {
         steps={item?.steps}
         distance={item?.distance.toFixed(2)}
         status={item?.status}
+        style={styles.detailsContainer}
         onPress={() => {
-          navigate("DetailsScreen");
+          navigate("DetailsScreen", { tripDetails: item });
         }}
       />
     );

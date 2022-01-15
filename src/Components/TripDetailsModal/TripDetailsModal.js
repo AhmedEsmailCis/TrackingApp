@@ -3,7 +3,6 @@ import { Alert, Modal, Text, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { RoundButton } from "..";
 import { TimeFormat, getDistanceBtTwoCoordinate } from "../../Helper";
-
 import { navigate } from "../../Navigation/RootNavigation";
 import { InsertNewTrips } from "../../Redux/Actions";
 import styles from "./styles";
@@ -26,6 +25,8 @@ export function TripDetailsModal({ modalVisible, setModalVisible, liveLat, liveL
         setCounterTime((c) => c + 1);
       }, 1000);
     }
+  }, [counterTime, pause]);
+  useEffect(() => {
     if (pause) {
       pathData.push({
         lat: liveLat,
@@ -33,7 +34,7 @@ export function TripDetailsModal({ modalVisible, setModalVisible, liveLat, liveL
         pause: true,
       });
     }
-  }, [counterTime, pause]);
+  }, [pause]);
   useEffect(() => {
     if (modalVisible && !pause) {
       pushNewPath();

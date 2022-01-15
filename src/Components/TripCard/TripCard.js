@@ -11,6 +11,7 @@ export function TripCard({
   distance,
   status, // walking superFast running
   onPress,
+  style,
 }) {
   const WALKING = "walking";
   const SUPER_FAST = "superFast";
@@ -27,7 +28,7 @@ export function TripCard({
     if (status === RUNNING) return "run";
   };
   return (
-    <TouchableOpacity onPress={onPress} style={styles.container}>
+    <TouchableOpacity disabled={!onPress} onPress={onPress} style={[styles.container, style]}>
       <View style={styles.rowBtStatusDate}>
         <View style={styles.rowBtIconStatus}>
           <View style={styles.wrapIcon}>
