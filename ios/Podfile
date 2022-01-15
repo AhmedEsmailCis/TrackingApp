@@ -16,6 +16,10 @@ target 'trackingProject' do
 
   pod 'react-native-maps', :path => '../node_modules/react-native-maps'
 
+  # React Native Maps dependencies
+  rn_maps_path = '../node_modules/react-native-maps'
+  pod 'react-native-google-maps', :path => rn_maps_path
+  
   target 'trackingProjectTests' do
     inherit! :complete
     # Pods for testing
