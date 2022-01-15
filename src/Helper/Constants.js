@@ -1,3 +1,11 @@
 export const LATITUDE_DELTA = 0.015248456313987191; // 0.00994052098169007;
 export const LONGITUDE_DELTA = 0.011688061058517718; // 0.007621161639693952;
 export const GOOGLE_MAPS_APIKEY = "AIzaSyDi_vwLtn6Te8HoYYsrmvELA2zZC4QIxfM";
+export const WALKING = "walking";
+export const SUPER_FAST = "superFast";
+export const RUNNING = "running";
+export const STANDING = "standing";
+export const MIN_WALKING_SPEED = 0.94;
+export const MIN_RUNNING_SPEED = 1.43;
+export const MAX_RUNNING_SPEED = 12.2936;
+export const NORMAL_STEP_NUMBER_PER_METERS = 1.31;

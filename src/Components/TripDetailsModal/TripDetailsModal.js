@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Alert, Modal, Text, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { RoundButton } from "..";
-import { TimeFormat, getDistanceBtTwoCoordinate } from "../../Helper";
+import {
+  TimeFormat,
+  getDistanceBtTwoCoordinate,
+  NORMAL_STEP_NUMBER_PER_METERS,
+} from "../../Helper";
 import { navigate } from "../../Navigation/RootNavigation";
 import { InsertNewTrips } from "../../Redux/Actions";
 import styles from "./styles";
@@ -84,9 +88,8 @@ export function TripDetailsModal({ modalVisible, setModalVisible, liveLat, liveL
       InsertNewTrips({
         date: startDate,
         time: Math.abs((currentDate.getTime() - startDate.getTime()) / 1000),
-        steps: Math.floor(1.31 * cumulativeDistance).toFixed(0),
+        steps: Math.floor(NORMAL_STEP_NUMBER_PER_METERS * cumulativeDistance).toFixed(0),
         distance: cumulativeDistance,
-        status: "superFast", // walking superFast running
         path: pathData,
       }),
     );

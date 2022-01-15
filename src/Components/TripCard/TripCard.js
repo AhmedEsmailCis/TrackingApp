@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { ICON_TYPE, IMIcon } from "..";
+import { RUNNING, STANDING, SUPER_FAST, WALKING } from "../../Helper";
 import { COLORS, wp } from "../../Styles";
 import styles from "./styles";
 
@@ -13,16 +14,15 @@ export function TripCard({
   onPress,
   style,
 }) {
-  const WALKING = "walking";
-  const SUPER_FAST = "superFast";
-  const RUNNING = "running";
   const determineStatus = () => {
+    if (status === STANDING) return "Standing";
     if (status === WALKING) return "Walking";
-    if (status === SUPER_FAST) return "Super Fast";
+    if (status === SUPER_FAST) return "Super Fast Or Driving";
     if (status === RUNNING) return "Running";
   };
 
   const determineIconName = () => {
+    if (status === STANDING) return "human-male";
     if (status === WALKING) return "walk";
     if (status === SUPER_FAST) return "run-fast";
     if (status === RUNNING) return "run";
@@ -39,6 +39,7 @@ export function TripCard({
               size={wp(15)}
             />
           </View>
+          <Text style={[styles.label, { marginLeft: wp(12) }]}>feels : </Text>
           <Text style={styles.status}>{determineStatus()}</Text>
         </View>
         <Text style={styles.date}>{date}</Text>

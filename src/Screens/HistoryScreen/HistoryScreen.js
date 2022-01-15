@@ -6,7 +6,7 @@ import { SafeAreaLayout, MainHeader, IMIcon, ICON_TYPE, TripCard } from "../../C
 import { COLORS, wp } from "../../Styles";
 import styles from "./styles";
 import { navigate, pop } from "../../Navigation/RootNavigation";
-import { GetFullDate, TimeFormat } from "../../Helper";
+import { CheckRunningFeels, GetFullDate, TimeFormat } from "../../Helper";
 
 export function HistoryScreen() {
   const leftIcon = () => (
@@ -38,7 +38,7 @@ export function HistoryScreen() {
         time={TimeFormat(item?.time)}
         steps={item?.steps}
         distance={item?.distance.toFixed(2)}
-        status={item?.status}
+        status={CheckRunningFeels(item?.distance, item?.time)}
         style={styles.detailsContainer}
         onPress={() => {
           navigate("DetailsScreen", { tripDetails: item });

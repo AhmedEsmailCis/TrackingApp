@@ -31,7 +31,6 @@ export default StyleSheet.create({
     ...FONTS.REGULAR,
     fontSize: wp(14),
     color: COLORS.AppColor1,
-    marginLeft: wp(12),
   },
   wrapIcon: {
     width: wp(30),

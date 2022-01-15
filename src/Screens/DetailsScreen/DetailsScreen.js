@@ -2,7 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { ICON_TYPE, IMIcon, MainHeader, SafeAreaLayout, TripCard } from "../../Components";
-import { GetFullDate, LATITUDE_DELTA, LONGITUDE_DELTA, TimeFormat } from "../../Helper";
+import {
+  CheckRunningFeels,
+  GetFullDate,
+  LATITUDE_DELTA,
+  LONGITUDE_DELTA,
+  TimeFormat,
+} from "../../Helper";
 import { pop } from "../../Navigation/RootNavigation";
 import { COLORS, wp } from "../../Styles";
 import styles from "./styles";
@@ -99,7 +105,7 @@ export function DetailsScreen({ route }) {
           time={TimeFormat(tripDetails?.time)}
           steps={tripDetails?.steps}
           distance={tripDetails?.distance.toFixed(2)}
-          status={tripDetails?.status}
+          status={CheckRunningFeels(tripDetails?.distance, tripDetails?.time)}
           style={styles.detailsContainer}
         />
         <View style={styles.mapContainer}>
