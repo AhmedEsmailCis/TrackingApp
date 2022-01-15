@@ -10,9 +10,10 @@ export function TripCard({
   time,
   steps,
   distance,
-  status, // walking superFast running
+  status, // walking superFast running standing
   onPress,
   style,
+  onRemovePress,
 }) {
   const determineStatus = () => {
     if (status === STANDING) return "Standing";
@@ -28,7 +29,11 @@ export function TripCard({
     if (status === RUNNING) return "run";
   };
   return (
-    <TouchableOpacity disabled={!onPress} onPress={onPress} style={[styles.container, style]}>
+    <TouchableOpacity
+      disabled={!onPress}
+      onPress={onPress}
+      style={[styles.container, style]}
+      activeOpacity={0.7}>
       <View style={styles.rowBtStatusDate}>
         <View style={styles.rowBtIconStatus}>
           <View style={styles.wrapIcon}>
@@ -42,7 +47,22 @@ export function TripCard({
           <Text style={[styles.label, { marginLeft: wp(12) }]}>feels : </Text>
           <Text style={styles.status}>{determineStatus()}</Text>
         </View>
-        <Text style={styles.date}>{date}</Text>
+        {onRemovePress && (
+          <TouchableOpacity style={styles.trashBttn} onPress={onRemovePress}>
+            <IMIcon origin={ICON_TYPE.FONT_AWESOME} name="trash" color="white" />
+          </TouchableOpacity>
+        )}
+      </View>
+
+      <View style={styles.rowBtThreeDetails}>
+        <View style={styles.rowBtLabelResult}>
+          <Text style={styles.label}>Date : </Text>
+          <Text style={styles.result}>{date}</Text>
+        </View>
+        <View style={styles.rowBtLabelResult}>
+          <Text style={styles.label}>Distance : </Text>
+          <Text style={styles.result}>{distance} m</Text>
+        </View>
       </View>
       <View style={styles.rowBtThreeDetails}>
         <View style={styles.rowBtLabelResult}>
@@ -52,10 +72,6 @@ export function TripCard({
         <View style={styles.rowBtLabelResult}>
           <Text style={styles.label}>Steps : </Text>
           <Text style={styles.result}>{steps}</Text>
-        </View>
-        <View style={styles.rowBtLabelResult}>
-          <Text style={styles.label}>Distance : </Text>
-          <Text style={styles.result}>{distance} m</Text>
         </View>
       </View>
     </TouchableOpacity>

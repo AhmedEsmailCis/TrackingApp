@@ -5,3 +5,4 @@ export * from "./TripCard/TripCard";
 export * from "./StartRunningCard/StartRunningCard";
 export * from "./RoundButton/RoundButton";
 export * from "./TripDetailsModal/TripDetailsModal";
+export * from "./EmptyContainer/EmptyContainer";

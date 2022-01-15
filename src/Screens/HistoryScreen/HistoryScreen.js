@@ -1,12 +1,19 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { FlatList } from "react-native";
-import { useSelector } from "react-redux";
-import reactotron from "reactotron-react-native";
-import { SafeAreaLayout, MainHeader, IMIcon, ICON_TYPE, TripCard } from "../../Components";
-import { COLORS, wp } from "../../Styles";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  SafeAreaLayout,
+  MainHeader,
+  IMIcon,
+  ICON_TYPE,
+  TripCard,
+  EmptyContainer,
+} from "../../Components";
+import { COLORS, hp, IMAGES, wp } from "../../Styles";
 import styles from "./styles";
 import { navigate, pop } from "../../Navigation/RootNavigation";
 import { CheckRunningFeels, GetFullDate, TimeFormat } from "../../Helper";
+import { RemoveTrip } from "../../Redux/Actions";
 
 export function HistoryScreen() {
   const leftIcon = () => (
@@ -27,9 +34,7 @@ export function HistoryScreen() {
     />
   );
   const trips = useSelector((state) => state.tripsState.trips);
-  useEffect(() => {
-    reactotron.log("History", trips);
-  }, []);
+  const dispatch = useDispatch();
   const renderItem = ({ item, index }) => {
     return (
       <TripCard
@@ -43,9 +48,23 @@ export function HistoryScreen() {
         onPress={() => {
           navigate("DetailsScreen", { tripDetails: item });
         }}
+        onRemovePress={() => {
+          dispatch(RemoveTrip(item?.id));
+        }}
       />
     );
   };
+  const renderEmptyHistory = () => (
+    <>
+      {trips?.length === 0 && (
+        <EmptyContainer
+          image={IMAGES.emptyHistory}
+          title="There is No History Tracking"
+          style={{ marginTop: hp(120) }}
+        />
+      )}
+    </>
+  );
   return (
     <SafeAreaLayout header={renderHeader()}>
       <FlatList
@@ -54,6 +73,7 @@ export function HistoryScreen() {
         contentContainerStyle={styles.mainContainer}
         showsVerticalScrollIndicator={false}
         renderItem={renderItem}
+        ListFooterComponent={renderEmptyHistory}
       />
     </SafeAreaLayout>
   );

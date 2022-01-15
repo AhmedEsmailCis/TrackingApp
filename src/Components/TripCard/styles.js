@@ -4,18 +4,17 @@ import { COLORS, FONTS, hp, wp } from "../../Styles";
 export default StyleSheet.create({
   container: {
     width: wp(354),
-    height: hp(95),
     backgroundColor: "white",
     alignSelf: "center",
     marginTop: hp(18),
     borderRadius: wp(14),
     paddingHorizontal: wp(20),
+    paddingVertical: hp(8),
   },
   rowBtStatusDate: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginTop: hp(20),
   },
   date: {
     ...FONTS.REGULAR,
@@ -43,7 +42,7 @@ export default StyleSheet.create({
   rowBtThreeDetails: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: hp(10),
+    marginTop: hp(5),
   },
   rowBtLabelResult: {
     flexDirection: "row",
@@ -61,5 +60,16 @@ export default StyleSheet.create({
     fontSize: wp(14),
     color: COLORS.AppColor3,
     opacity: 0.75,
+  },
+  trashBttn: {
+    backgroundColor: COLORS.AppColor3,
+    width: wp(20),
+    height: wp(20),
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: wp(5),
+    alignSelf: "flex-end",
+    marginVertical: hp(10),
+    zIndex: 1000,
   },
 });
