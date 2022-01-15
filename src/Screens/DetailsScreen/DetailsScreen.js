@@ -1,10 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
+import MapViewDirections from "react-native-maps-directions";
 import { ICON_TYPE, IMIcon, MainHeader, SafeAreaLayout, TripCard } from "../../Components";
 import {
   CheckRunningFeels,
   GetFullDate,
+  GetMapDirectionsData,
+  GOOGLE_MAPS_APIKEY,
   LATITUDE_DELTA,
   LONGITUDE_DELTA,
   TimeFormat,
@@ -34,7 +37,10 @@ export function DetailsScreen({ route }) {
   const { tripDetails } = route?.params;
   const mapRef = useRef();
   const [showPath, setShowPath] = useState(false);
+  const [MapDirectionsData, setMapDirectionsData] = useState(null);
+
   useEffect(() => {
+    setMapDirectionsData(GetMapDirectionsData(tripDetails?.path));
     setTimeout(
       () =>
         mapRef?.current?.fitToCoordinates(
@@ -97,6 +103,31 @@ export function DetailsScreen({ route }) {
       ))}
     </>
   );
+  const renderMapDirection = () => (
+    <>
+      {MapDirectionsData?.map((item, index) => (
+        <MapViewDirections
+          key={index.toString()}
+          strokeColor={COLORS.AppColor3}
+          strokeWidth={2}
+          mode="WALKING"
+          origin={{
+            latitude: item?.startLat,
+            longitude: item?.startLong,
+            latitudeDelta: LATITUDE_DELTA,
+            longitudeDelta: LONGITUDE_DELTA,
+          }}
+          destination={{
+            latitude: item?.endLat,
+            longitude: item?.endLong,
+            latitudeDelta: LATITUDE_DELTA,
+            longitudeDelta: LONGITUDE_DELTA,
+          }}
+          apikey={GOOGLE_MAPS_APIKEY}
+        />
+      ))}
+    </>
+  );
   return (
     <SafeAreaLayout header={renderHeader()} style={styles.screen}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -122,6 +153,7 @@ export function DetailsScreen({ route }) {
               longitudeDelta: LONGITUDE_DELTA,
             }}>
             {showPath && renderPathPoints()}
+            {MapDirectionsData && renderMapDirection()}
             {renderTripStartPoint()}
             {renderTripEndPoint()}
           </MapView.Animated>
