@@ -21,7 +21,7 @@ export function MainHeader({
         onPress={onLeftIconPress}>
         {leftIcon && leftIcon()}
       </TouchableOpacity>
-      <Text numberOfLines={2} style={[styles.title, titleStyle]}>
+      <Text testID="textTitle" numberOfLines={2} style={[styles.title, titleStyle]}>
         {title}
       </Text>
       <TouchableOpacity
