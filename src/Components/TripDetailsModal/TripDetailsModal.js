@@ -17,6 +17,7 @@ export function TripDetailsModal({ modalVisible, setModalVisible, liveLat, liveL
   const [currentDate, setCurrentDate] = useState(new Date());
   const [pathData, setPathData] = useState([]);
   const [cumulativeDistance, setCumulativeDistance] = useState(0);
+  const [delaySeconds, setDelaySeconds] = useState(0);
   const dispatch = useDispatch();
   useEffect(() => {
     if (modalVisible) {
@@ -76,18 +77,21 @@ export function TripDetailsModal({ modalVisible, setModalVisible, liveLat, liveL
     ]);
     setStartDate(new Date());
     setCurrentDate(new Date());
+    setDelaySeconds(0);
   };
   const onPausePress = () => {
     setPause(true);
   };
   const onPlayPress = () => {
     setPause(false);
+    setDelaySeconds((p) => p + Math.abs((new Date().getTime() - currentDate.getTime()) / 1000));
+    setCurrentDate(new Date());
   };
   const onStopPress = () => {
     dispatch(
       InsertNewTrips({
         date: startDate,
-        time: Math.abs((currentDate.getTime() - startDate.getTime()) / 1000),
+        time: Math.abs((currentDate.getTime() - startDate.getTime()) / 1000 - delaySeconds),
         steps: Math.floor(NORMAL_STEP_NUMBER_PER_METERS * cumulativeDistance).toFixed(0),
         distance: cumulativeDistance,
         path: pathData,
@@ -109,7 +113,9 @@ export function TripDetailsModal({ modalVisible, setModalVisible, liveLat, liveL
       }}>
       <View style={styles.modalView}>
         <Text style={styles.txt}>
-          {TimeFormat(Math.abs((currentDate.getTime() - startDate.getTime()) / 1000))}
+          {TimeFormat(
+            Math.abs((currentDate.getTime() - startDate.getTime()) / 1000 - delaySeconds),
+          )}
         </Text>
         <View style={styles.rowBtThreeDetails}>
           <View style={styles.rowBtLabelResult}>
