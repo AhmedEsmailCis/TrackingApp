@@ -6,6 +6,7 @@ import { LogBox, StatusBar } from "react-native";
 import { store, persistor } from "../Redux/Store";
 import AppContainer from "../Navigation";
 import { COLORS } from "../Styles";
+import { VideoRun } from "../../VideoRun";
 
 function App() {
   LogBox.ignoreAllLogs(true);
@@ -15,7 +16,8 @@ function App() {
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <StatusBar backgroundColor="white" barStyle="dark-content" />
-          <AppContainer />
+          {/* <AppContainer /> */}
+          <VideoRun />
         </PersistGate>
       </Provider>
     </SafeAreaProvider>
